@@ -14,7 +14,7 @@ namespace cicdApi
         }
 
         [Fact]
-        public void Encrypt_ShouldReturnEncryptedText()
+        public void Encrypt_ShouldReturnEncrypted()
         {
             var input = "abc";
             var expected = "def";
@@ -22,6 +22,19 @@ namespace cicdApi
             var result = _encryptionService.Encrypt(input);
 
             Assert.Equal(expected, result);
+        }
+
+
+        [Fact]
+        public void Decrypt_ShouldReturnOriginalToOriginal()
+        {
+            var input = "def"; // Krypterad version av "abc" med nyckel 3
+            var expected = "abc";
+
+            var result = _encryptionService.Decrypt(input);
+
+            Assert.Equal(expected, result);
+
         }
     }
 }
