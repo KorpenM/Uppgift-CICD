@@ -1,4 +1,4 @@
-﻿using cicdApi;
+using cicdApi;
 using Xunit;
 
 namespace cicdApi
