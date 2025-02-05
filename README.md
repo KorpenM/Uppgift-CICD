@@ -1,4 +1,4 @@
-                                                                * Projektbeskrivning 
+                                               Projektbeskrivning 
 
 Målet med denna uppgift är att skapa och implementera en fullständig CI/CD-kedja för ett API-projekt i C# med fokus på kryptering och avkryptering. Projektet använder Git Flow och GitHub Actions för att säkerställa effektiv och automatisk hantering av kodändringar, tester och distribution.
 
