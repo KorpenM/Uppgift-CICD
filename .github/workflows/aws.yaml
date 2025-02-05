@@ -22,9 +22,9 @@ jobs:
             - name: Build project
               run: dotnet restore; dotnet publish;
 
-            - name: Create zip package
-              run: cd publish && zip -r ../site.zip .;
-              
+            - name: create zip package
+              run: cd site; zip ../site.zip *;
+
             - name: Deploy to AWS EB
               uses: einaregilsson/beanstalk-deploy@v21
               with:
