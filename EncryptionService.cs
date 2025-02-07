@@ -21,7 +21,7 @@ namespace cicdApi
             var result = new StringBuilder();
             foreach (char c in input)
             {
-                if (char.IsLetterOrDigit(c))  // Stödjer nu både bokstäver och siffror
+                if (char.IsLetterOrDigit(c))  // Stödjer både bokstäver och siffror
                 {
                     var start = char.IsUpper(c) ? 'A' : char.IsLower(c) ? 'a' : '0';
                     int range = char.IsDigit(c) ? 10 : 26;
