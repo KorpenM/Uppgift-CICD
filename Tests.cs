@@ -28,7 +28,7 @@ namespace cicdApi
         [Fact]
         public void Decrypt_ShouldReturnOriginalToOriginal()
         {
-            var input = "def"; // Krypterad version av "abc" med nyckel 3
+            var input = "def";
             var expected = "abc";
 
             var result = _encryptionService.Decrypt(input);
@@ -36,5 +36,19 @@ namespace cicdApi
             Assert.Equal(expected, result);
 
         }
+
+
+        [Fact]
+        public void GenerateRandomPassword_ReturnValidPassword()
+        {
+            int expectedLength = 10;
+
+            var password = _encryptionService.GenerateRandomPassword(expectedLength);
+
+            Assert.NotNull(password);
+            Assert.Equal(expectedLength, password.Length);
+            Assert.Matches("^[A-Za-z0-9]+$", password);
+        }
+
     }
 }
