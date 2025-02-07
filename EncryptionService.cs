@@ -1,11 +1,12 @@
-﻿using System.Text;
-
+﻿using System;
+using System.Text;
 
 namespace cicdApi
 {
     public class EncryptionService
     {
         private int _key;
+        private static Random _random = new Random();
 
         public EncryptionService(int key)
         {
@@ -20,10 +21,11 @@ namespace cicdApi
             var result = new StringBuilder();
             foreach (char c in input)
             {
-                if (char.IsLetter(c))
+                if (char.IsLetterOrDigit(c))  // Stödjer både bokstäver och siffror
                 {
-                    var start = char.IsUpper(c) ? 'A' : 'a';
-                    result.Append((char)((((c - start + _key) + 26) % 26) + start));
+                    var start = char.IsUpper(c) ? 'A' : char.IsLower(c) ? 'a' : '0';
+                    int range = char.IsDigit(c) ? 10 : 26;
+                    result.Append((char)((((c - start + _key) + range) % range) + start));
                 }
                 else
                 {
@@ -41,10 +43,11 @@ namespace cicdApi
             var result = new StringBuilder();
             foreach (char c in input)
             {
-                if (char.IsLetter(c))
+                if (char.IsLetterOrDigit(c))
                 {
-                    var start = char.IsUpper(c) ? 'A' : 'a';
-                    result.Append((char)((((c - start - _key) + 26) % 26) + start));
+                    var start = char.IsUpper(c) ? 'A' : char.IsLower(c) ? 'a' : '0';
+                    int range = char.IsDigit(c) ? 10 : 26;
+                    result.Append((char)((((c - start - _key) + range) % range) + start));
                 }
                 else
                 {
@@ -52,6 +55,18 @@ namespace cicdApi
                 }
             }
             return result.ToString();
+        }
+
+        // Genererar ett slumpmässigt lösenord med 10 tecken (bokstäver och siffror)
+        public string GenerateRandomPassword(int length = 10)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var password = new StringBuilder();
+            for (int i = 0; i < length; i++)
+            {
+                password.Append(chars[_random.Next(chars.Length)]);
+            }
+            return password.ToString();
         }
     }
 }
