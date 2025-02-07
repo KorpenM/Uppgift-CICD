@@ -50,5 +50,14 @@ namespace cicdApi
             Assert.Matches("^[A-Za-z0-9]+$", password);
         }
 
+
+        [Fact]
+        public void GenerateRandomPassword_BeRandom()
+        {
+            var password1 = _encryptionService.GenerateRandomPassword();
+            var password2 = _encryptionService.GenerateRandomPassword();
+
+            Assert.NotEqual(password1, password2);
+        }
     }
 }
