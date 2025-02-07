@@ -13,7 +13,7 @@ Endpointen tar emot text och returnerar en krypterad version av den. Krypterings
 * Avkryptera
 Endpointen tar emot en krypterad text och returnerar den ursprungliga texten.
 
-- Min kod genererar ett slumpat "lösenord" som man sedan kan decrypta. 
+- Min kod genererar ett slumpat "lösenord" - med hjälp av /generate-password, som man sedan kan decrypta. 
 
 _______________________________________________________________________________
 _______________________________________________________________________________
